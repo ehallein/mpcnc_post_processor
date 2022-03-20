@@ -1601,7 +1601,7 @@ function Start() {
     if (properties.job1_SetOriginOnStart) {
       writeComment(eComment.Info, "   Set current position to 0,0,0");
     }
-
+    writeComment(eComment.Info, "   Move Z to 10mm");
     writeBlock(gAbsIncModal.format(90)); // Set to Absolute Positioning
     writeBlock(gUnitModal.format(unit == IN ? 20 : 21)); // Set the units
     writeBlock(mFormat.format(84), sFormat.format(0)); // Disable steppers timeout
@@ -1609,7 +1609,8 @@ function Start() {
     if (properties.job1_SetOriginOnStart) {
       writeBlock(gFormat.format(92), xFormat.format(0), yFormat.format(0), zFormat.format(0)); // Set origin to initial position
     }
-
+    writeBlock(gFormat.format(0), zFormat.format(10)); // Move Z to 10mm
+    
     if (properties.probe1_OnStart && tool.number != 0 && !tool.isJetTool()) {
       onCommand(COMMAND_TOOL_MEASURE);
     }
